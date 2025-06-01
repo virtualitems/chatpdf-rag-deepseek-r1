@@ -1,7 +1,7 @@
 """Módulo para gestionar el almacenamiento vectorial de documentos."""
 
 import logging
-from typing import List, Optional, Dict, Any
+from typing import List, Optional
 
 from langchain_community.vectorstores import Chroma
 from langchain_ollama import OllamaEmbeddings
@@ -40,20 +40,20 @@ class VectorStoreManager:
         try:
             # Intentar cargar un Vector Store existente
             self.vector_store = Chroma(
-                persist_directory=VECTOR_STORE_CONFIG["persist_directory"],
+                persist_directory=VECTOR_STORE_CONFIG['persist_directory'],
                 embedding_function=self.embeddings,
-                collection_name=VECTOR_STORE_CONFIG.get("collection_name", "default")
+                collection_name=VECTOR_STORE_CONFIG.get('collection_name', 'default')
             )
 
-            if self.vector_store.get()["ids"]:
+            if self.vector_store.get()['ids']:
                 # Si hay documentos en el Vector Store, configurar el retriever
-                logger.info("Vector Store existente cargado correctamente")
+                logger.info('Vector Store existente cargado correctamente')
                 self._configure_retriever()
             else:
-                logger.info("Vector Store existente está vacío")
+                logger.info('Vector Store existente está vacío')
 
         except Exception as e:
-            logger.error(f"Error al cargar Vector Store: {e}")
+            logger.error('Error al cargar Vector Store: %s', e)
             self.vector_store = None
             self.retriever = None
 
@@ -67,8 +67,8 @@ class VectorStoreManager:
         """
         if self.vector_store:
             self.retriever = self.vector_store.as_retriever(
-                search_type="similarity_score_threshold",
-                search_kwargs={"k": k, "score_threshold": score_threshold}
+                search_type='similarity_score_threshold',
+                search_kwargs={'k': k, 'score_threshold': score_threshold}
             )
 
     def add_documents(self, documents: List[Document]) -> bool:
@@ -82,30 +82,30 @@ class VectorStoreManager:
             True si los documentos se añadieron correctamente, False en caso contrario.
         """
         if not documents:
-            logger.warning("No hay documentos para añadir al Vector Store")
+            logger.warning('No hay documentos para añadir al Vector Store')
             return False
 
         try:
             if self.vector_store:
                 # Añadir documentos al Vector Store existente
                 self.vector_store.add_documents(documents=documents)
-                logger.info(f"Se añadieron {len(documents)} documentos al Vector Store existente")
+                logger.info('Se añadieron %d documentos al Vector Store existente', len(documents))
             else:
                 # Crear un nuevo Vector Store con los documentos
                 self.vector_store = Chroma.from_documents(
                     documents=documents,
                     embedding=self.embeddings,
-                    persist_directory=VECTOR_STORE_CONFIG["persist_directory"],
-                    collection_name=VECTOR_STORE_CONFIG.get("collection_name", "default")
+                    persist_directory=VECTOR_STORE_CONFIG['persist_directory'],
+                    collection_name=VECTOR_STORE_CONFIG.get('collection_name', 'default')
                 )
-                logger.info(f"Se creó un nuevo Vector Store con {len(documents)} documentos")
+                logger.info('Se creó un nuevo Vector Store con %d documentos', len(documents))
 
             self._configure_retriever()
             self.persist()
             return True
 
         except Exception as e:
-            logger.error(f"Error al añadir documentos al Vector Store: {e}")
+            logger.error('Error al añadir documentos al Vector Store: %s', e)
             return False
 
     def retrieve_documents(self, query: str, k: int = RETRIEVAL_K,
@@ -125,17 +125,17 @@ class VectorStoreManager:
             ValueError: Si el Vector Store no está inicializado.
         """
         if not self.vector_store:
-            raise ValueError("Vector Store no inicializado. Por favor añada documentos primero.")
+            raise ValueError('Vector Store no inicializado. Por favor añada documentos primero.')
 
         # Actualizar configuración del retriever si los parámetros son diferentes
-        if not self.retriever or self.retriever.search_kwargs.get("k") != k or \
-           self.retriever.search_kwargs.get("score_threshold") != score_threshold:
+        if not self.retriever or self.retriever.search_kwargs.get('k') != k or \
+           self.retriever.search_kwargs.get('score_threshold') != score_threshold:
             self._configure_retriever(k, score_threshold)
 
         if not self.retriever:
-            raise ValueError("No se pudo configurar el retriever.")
+            raise ValueError('No se pudo configurar el retriever.')
 
-        logger.info(f"Recuperando documentos para la consulta: {query}")
+        logger.info('Recuperando documentos para la consulta: %s', query)
         return self.retriever.invoke(query)
 
     def persist(self):
@@ -144,7 +144,7 @@ class VectorStoreManager:
         """
         if self.vector_store:
             self.vector_store.persist()
-            logger.info("Vector Store guardado en disco")
+            logger.info('Vector Store guardado en disco')
 
     def clear(self):
         """
@@ -153,10 +153,10 @@ class VectorStoreManager:
         if self.vector_store:
             try:
                 self.vector_store.delete_collection()
-                logger.info("Vector Store eliminado")
+                logger.info('Vector Store eliminado')
             except Exception as e:
-                logger.error(f"Error al eliminar la colección: {e}")
+                logger.error('Error al eliminar la colección: %s', e)
 
         self.vector_store = None
         self.retriever = None
-        logger.info("Vector Store y retriever reiniciados")
+        logger.info('Vector Store y retriever reiniciados')

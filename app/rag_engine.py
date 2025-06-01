@@ -1,11 +1,9 @@
 """Motor principal de RAG (Retrieval Augmented Generation)."""
 
 import logging
-from typing import List, Optional
 
 from langchain_ollama import ChatOllama
 from langchain_core.prompts import ChatPromptTemplate
-from langchain_core.documents import Document
 from langchain.schema.output_parser import StrOutputParser
 from langchain.schema.runnable import RunnablePassthrough
 
@@ -41,7 +39,7 @@ class RAGEngine:
         self.vector_store_manager = VectorStoreManager()
         self.llm = ChatOllama(model=llm_model)
         self.prompt = ChatPromptTemplate.from_template(RAG_PROMPT_TEMPLATE)
-        logger.info(f'Motor RAG inicializado con modelo {llm_model}')
+        logger.info('Motor RAG inicializado con modelo %s', llm_model)
 
     def ingest(self, file_path: str) -> bool:
         """
@@ -58,7 +56,7 @@ class RAGEngine:
             success = self.vector_store_manager.add_documents(documents)
             return success
         except Exception as e:
-            logger.error(f'Error durante la ingesta del documento {file_path}: {e}')
+            logger.error('Error durante la ingesta del documento %s: %s', file_path, e)
             return False
 
     def ask(self, query: str, k: int = RETRIEVAL_K, score_threshold: float = RETRIEVAL_THRESHOLD) -> str:
