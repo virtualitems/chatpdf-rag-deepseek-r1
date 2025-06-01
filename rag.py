@@ -20,7 +20,7 @@ logger = logging.getLogger(__name__)
 class ChatPDF:
     """A class for handling PDF ingestion and question answering using RAG."""
 
-    def __init__(self, llm_model: str = "deepseek-r1:latest", embedding_model: str = "mxbai-embed-large"):
+    def __init__(self, llm_model: str = "mistral:7b", embedding_model: str = "mxbai-embed-large"):
         """
         Initialize the ChatPDF instance with an LLM and embedding model.
         """
@@ -32,10 +32,10 @@ class ChatPDF:
             You are a helpful assistant answering questions based on the uploaded document.
             Context:
             {context}
-            
+
             Question:
             {question}
-            
+
             Answer concisely and accurately in three sentences or less.
             """
         )
