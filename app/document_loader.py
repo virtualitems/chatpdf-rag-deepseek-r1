@@ -5,9 +5,9 @@ from typing import List, Union
 import logging
 
 from langchain_community.document_loaders import PyPDFLoader, TextLoader
+from langchain_community.vectorstores.utils import filter_complex_metadata
 from langchain_core.documents import Document
 from langchain.text_splitter import RecursiveCharacterTextSplitter
-from langchain_community.vectorstores.utils import filter_complex_metadata
 
 from .config import TEXT_SPLITTER_CONFIG
 
@@ -46,7 +46,7 @@ class DocumentLoader:
             ValueError: Si el formato de archivo no es compatible.
         """
         file_path_str = str(file_path)
-        logger.info(f'Cargando documento: {file_path_str}')
+        logger.info('Cargando documento: %s', file_path_str)
 
         # Seleccionar el cargador apropiado según la extensión del archivo
         if file_path_str.lower().endswith('.pdf'):
@@ -66,7 +66,7 @@ class DocumentLoader:
         Returns:
             Lista de documentos procesados y divididos en chunks.
         """
-        logger.info(f'Cargando PDF: {file_path}')
+        logger.info('Cargando PDF: %s', file_path)
         docs = PyPDFLoader(file_path=file_path).load()
         return self._process_documents(docs)
 
@@ -80,7 +80,7 @@ class DocumentLoader:
         Returns:
             Lista de documentos procesados y divididos en chunks.
         """
-        logger.info(f'Cargando TXT: {file_path}')
+        logger.info('Cargando TXT: %s', file_path)
         docs = TextLoader(file_path=file_path).load()
         return self._process_documents(docs)
 
@@ -96,5 +96,5 @@ class DocumentLoader:
         """
         chunks = self.text_splitter.split_documents(docs)
         chunks = filter_complex_metadata(chunks)
-        logger.info(f'Documento procesado en {len(chunks)} chunks')
+        logger.info('Documento procesado en %d chunks', len(chunks))
         return chunks

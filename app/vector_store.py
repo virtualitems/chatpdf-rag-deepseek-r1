@@ -109,7 +109,7 @@ class VectorStoreManager:
             return False
 
     def retrieve_documents(self, query: str, k: int = RETRIEVAL_K,
-                          score_threshold: float = RETRIEVAL_THRESHOLD) -> List[Document]:
+                            score_threshold: float = RETRIEVAL_THRESHOLD) -> List[Document]:
         """
         Recupera documentos del Vector Store basados en una consulta.
 
@@ -128,8 +128,13 @@ class VectorStoreManager:
             raise ValueError('Vector Store no inicializado. Por favor añada documentos primero.')
 
         # Actualizar configuración del retriever si los parámetros son diferentes
-        if not self.retriever or self.retriever.search_kwargs.get('k') != k or \
-           self.retriever.search_kwargs.get('score_threshold') != score_threshold:
+        needs_reconfig = (
+            not self.retriever or
+            self.retriever.search_kwargs.get('k') != k or
+            self.retriever.search_kwargs.get('score_threshold') != score_threshold
+        )
+
+        if needs_reconfig:
             self._configure_retriever(k, score_threshold)
 
         if not self.retriever:
