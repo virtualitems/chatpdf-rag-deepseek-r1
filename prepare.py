@@ -4,10 +4,11 @@ import os
 import time
 import logging
 
-from .rag_engine import RAGEngine
-from .config import DOCS_DIRECTORY
+from app.rag_engine import RAGEngine
+from app.config import DOCS_DIRECTORY
 
 logging.basicConfig(level=logging.INFO)
+
 logger = logging.getLogger(__name__)
 
 

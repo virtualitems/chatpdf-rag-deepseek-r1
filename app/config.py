@@ -9,8 +9,8 @@ logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
 # Constantes para la recuperación
-RETRIEVAL_K = 1
-RETRIEVAL_THRESHOLD = 0.2
+RETRIEVAL_K = 3
+RETRIEVAL_THRESHOLD = 0.3
 
 # Configuración de modelos
 LLM_MODEL = 'mistral:7b'
@@ -42,6 +42,7 @@ VECTOR_STORE_CONFIG: Dict[str, Any] = {
 
 # Configuración del chunking
 TEXT_SPLITTER_CONFIG: Dict[str, Any] = {
-    'chunk_size': 1024,
-    'chunk_overlap': 100
+    "chunk_size": 300,
+    "chunk_overlap": 50,
+    "length_function": len,
 }
