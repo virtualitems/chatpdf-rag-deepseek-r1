@@ -1,6 +1,6 @@
-# Local ChatPDF with DeepSeek R1
+# Local ChatPDF with RAG and Mistral-7B
 
-**ChatPDF** is a Retrieval-Augmented Generation (RAG) application that allows users to upload PDF documents and interact with them through a chatbot interface. The system uses advanced embedding models and a local vector store for efficient and accurate question-answering.
+**ChatPDF** is a Retrieval-Augmented Generation (RAG) application that allows users to interact with PDF documents through both a web interface and CLI. The system uses Mistral-7B and advanced embedding models for efficient and accurate question-answering in Spanish.
 
 ## Features
 
@@ -52,40 +52,34 @@ chromadb
 
 ### 4. Pull Required Models for Ollama
 
-To use the specified embedding and LLM models (`mxbai-embed-large` and `deepseek-r1`), download them via the `ollama` CLI:
+Pull the required models via the `ollama` CLI:
 
 ```bash
+ollama pull mistral:7b
 ollama pull mxbai-embed-large
-ollama pull deepseek-r1:latest
 ```
-
----
 
 ## Usage
 
-### 1. Start the Application
+### Web Interface
 
 Run the Streamlit app:
 
 ```bash
-streamlit run app.py
+streamlit run app/gui.py
 ```
 
-### 2. Upload Documents
+### Command Line Interface
 
-- Navigate to the **Upload a Document** section in the web interface.
-- Upload one or multiple PDF files to process their content.
-- Each file will be ingested automatically and confirmation messages will show processing time.
+Use the CLI for quick queries:
 
-### 3. Ask Questions
+```bash
+# Ask a question about your documents
+python cli.py "¿Cuál es el horario de atención?"
 
-- Type your question in the chat input box and press Enter.
-- Adjust retrieval settings (`k` and similarity threshold) in the **Settings** section for better responses.
-
-### 4. Clear Chat and Reset
-
-- Use the **Clear Chat** button to reset the chat interface.
-- Clearing the chat also resets the vector store and retriever.
+# Pipe content to the CLI
+echo "¿Cuáles son los servicios?" | python cli.py
+```
 
 ---
 
@@ -93,24 +87,31 @@ streamlit run app.py
 
 ```
 .
-├── app.py                  # Streamlit app for the user interface
-├── rag.py                  # Core RAG logic for PDF ingestion and question-answering
-├── requirements.txt        # List of required Python dependencies
-├── chroma_db/              # Local persistent vector store (auto-generated)
-└── README.md               # Project documentation
+├── app/
+│   ├── __init__.py
+│   ├── config.py          # Configuration parameters
+│   ├── document_loader.py # Document loading utilities
+│   ├── gui.py            # Streamlit web interface
+│   ├── prepare.py        # Document ingestion script
+│   ├── rag_engine.py     # Core RAG implementation
+│   └── vector_store.py   # Vector store management
+├── cli.py                # Command line interface
+├── docs/                 # Directory for documents
+├── requirements.txt      # Python dependencies
+└── README.md            # Project documentation
 ```
 
 ---
 
 ## Configuration
 
-You can modify the following parameters in `rag.py` to suit your needs:
+You can modify the following parameters in `config.py` to suit your needs:
 
 1. **Models**:
-   - Default LLM: `deepseek-r1:latest` (7B parameters)
-   - Default Embedding: `mxbai-embed-large` (1024 dimensions)
-   - Change these in the `ChatPDF` class constructor or when initializing the class
-   - Any Ollama-compatible model can be used by updating the `llm_model` parameter
+   - Default LLM: `mistral:7b`
+   - Default Embedding: `mxbai-embed-large`
+   - Change these in the configuration file by updating `LLM_MODEL` and `EMBEDDING_MODEL`
+   - Any Ollama-compatible model can be used
 
 2. **Chunking Parameters**:
    - `chunk_size=1024` and `chunk_overlap=100`
