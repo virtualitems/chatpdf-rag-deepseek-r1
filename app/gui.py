@@ -66,7 +66,7 @@ class ChatInterface:
             st.session_state['user_input'] = ''
 
         # Título de la aplicación
-        st.header('RAG con DeepSeek Coder')
+        st.header('Sistema RAG')
         st.session_state['ingestion_spinner'] = st.empty()
 
         # Mostrar mensajes y entrada de texto

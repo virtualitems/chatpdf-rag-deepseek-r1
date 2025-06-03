@@ -53,6 +53,7 @@ class RAGEngine:
         """
         try:
             documents = self.document_loader.load_document(file_path)
+            logger.info('agregando %d documentos desde %s', len(documents), file_path)
             success = self.vector_store_manager.add_documents(documents)
             return success
         except Exception as e:
