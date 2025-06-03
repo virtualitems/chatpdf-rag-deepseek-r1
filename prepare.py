@@ -29,8 +29,15 @@ def load_documents():
 
     # Listar todos los archivos en el directorio docs
     files = os.listdir(docs_dir)
-    pdf_files = [f for f in files if f.lower().endswith('.pdf')]
-    txt_files = [f for f in files if f.lower().endswith('.txt')]
+
+    pdf_files = []
+    txt_files = []
+
+    for f in files:
+        if f.lower().endswith('.pdf'):
+            pdf_files.append(f)
+        elif f.lower().endswith('.txt'):
+            txt_files.append(f)
 
     # Procesar archivos PDF
     for pdf_file in pdf_files:
