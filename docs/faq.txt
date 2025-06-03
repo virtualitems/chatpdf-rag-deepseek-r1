@@ -1,0 +1,61 @@
+Preguntas frecuentes - TecnoGlobal S.A.
+
+1. ¿Qué tipo de servicios ofrece TecnoGlobal?
+TecnoGlobal ofrece desarrollo de software a medida, implementación de ERP y CRM, consultoría en transformación digital, soporte técnico y capacitación tecnológica.
+
+2. ¿Dónde está ubicada la empresa?
+Nuestra sede principal está en Bogotá, Colombia.
+
+3. ¿Atiende TecnoGlobal a clientes fuera de Colombia?
+Sí, trabajamos con clientes en varios países de América Latina.
+
+4. ¿Cuánto tiempo tarda un proyecto típico de desarrollo de software?
+El tiempo varía según el alcance, pero generalmente los proyectos toman entre 3 y 9 meses.
+
+5. ¿TecnoGlobal ofrece soporte postventa?
+Sí, contamos con un equipo de soporte técnico disponible para mantenimiento y resolución de problemas.
+
+6. ¿Qué metodologías de desarrollo utilizan?
+Usamos metodologías ágiles, principalmente Scrum, para gestionar proyectos.
+
+7. ¿La empresa tiene certificaciones?
+Sí, contamos con ISO 9001, ISO/IEC 27001 y certificaciones en metodologías ágiles.
+
+8. ¿Ofrecen capacitación para el personal de las empresas clientes?
+Sí, ofrecemos programas de formación continua y talleres personalizados.
+
+9. ¿Cuál es el proceso para solicitar un presupuesto?
+Puede contactarnos por correo o teléfono y uno de nuestros asesores se comunicará para entender sus necesidades y ofrecer una propuesta.
+
+10. ¿TecnoGlobal trabaja con startups?
+Sí, apoyamos a startups con soluciones tecnológicas adaptadas a sus requerimientos y presupuesto.
+
+11. ¿Qué tipo de garantía ofrecen en sus proyectos?
+Ofrecemos garantía de funcionalidad y soporte durante un periodo definido según el contrato.
+
+12. ¿Cómo garantizan la seguridad de la información?
+Implementamos normas ISO/IEC 27001 y buenas prácticas en desarrollo seguro para proteger los datos.
+
+13. ¿Se pueden realizar integraciones con sistemas existentes?
+Sí, desarrollamos integraciones personalizadas con sistemas legados y plataformas externas.
+
+14. ¿Cuál es el tamaño mínimo de empresa para contratar sus servicios?
+No hay un tamaño mínimo, atendemos desde pequeñas empresas hasta grandes corporaciones.
+
+15. ¿Qué opciones de contratación ofrecen?
+Ofrecemos proyectos por tiempo y materiales, contratos fijos y servicios de outsourcing.
+
+16. ¿TecnoGlobal tiene programas de responsabilidad social?
+Sí, participamos en iniciativas de educación tecnológica y desarrollo comunitario.
+
+17. ¿Cómo puedo postularme para trabajar en TecnoGlobal?
+Puede enviar su hoja de vida a la dirección de correo de recursos humanos disponible en la página web.
+
+18. ¿Cuáles son los horarios de atención?
+Atendemos de lunes a viernes de 8:00 a 18:00 horas.
+
+19. ¿Cómo se maneja la propiedad intelectual de los desarrollos?
+Los derechos se establecen en el contrato, usualmente el cliente es propietario del software desarrollado.
+
+20. ¿Ofrecen demostraciones o pruebas piloto?
+Sí, para proyectos grandes ofrecemos pruebas piloto para validar la solución antes de la implementación final.
