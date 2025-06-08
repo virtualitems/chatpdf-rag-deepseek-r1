@@ -4,8 +4,8 @@ import os
 import time
 import logging
 
-from app.rag_engine import RAGEngine
-from app.config import DOCS_DIRECTORY
+from chatbot.rag.rag_engine import RAGEngine
+from chatbot.rag.config import DOCS_DIRECTORY
 
 logging.basicConfig(level=logging.INFO)
 

@@ -9,8 +9,8 @@ import logging
 from abc import ABC, abstractmethod
 from typing import Optional, List
 
-from app.rag_engine import RAGEngine
-from app.config import RETRIEVAL_K, RETRIEVAL_THRESHOLD
+from chatbot.rag.rag_engine import RAGEngine
+from chatbot.rag.config import RETRIEVAL_K, RETRIEVAL_THRESHOLD
 
 # Configure logging
 logging.basicConfig(level=logging.DEBUG)
