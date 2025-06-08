@@ -7,3 +7,5 @@ ollama
 pypdf
 streamlit
 streamlit-chat
+django
+djangorestframework
