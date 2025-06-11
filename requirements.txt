@@ -9,3 +9,4 @@ streamlit
 streamlit-chat
 django
 djangorestframework
+django-cors-headers
